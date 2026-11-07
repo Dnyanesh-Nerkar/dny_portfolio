@@ -18,11 +18,11 @@ All content lives in `/data`, so no component changes are needed:
 - `experience.ts`, `education.ts`, `skills.ts`
 - `projects.ts`: set `metric` to show a real outcome, and `status` to show a confirmed badge
 
-## Deploy
+## Branches and deploys
 
-Every push to `release` runs `.github/workflows/deploy.yml`, which publishes the static export to GitHub Pages. The workflow sets `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_SITE_URL` from the repository's Pages settings.
+- `release` is staging. Pushing to it does not deploy anything.
+- `main` is production. Merging into `main` runs `.github/workflows/deploy.yml`, which publishes the static export to GitHub Pages.
 
-One-time setup in the repository settings:
+The workflow sets `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_SITE_URL` from the repository's Pages settings.
 
-1. **Pages**: set Source to **GitHub Actions**.
-2. **Environments > github-pages > Deployment branches and tags**: allow `release`.
+One-time setup: in the repository settings under **Pages**, set Source to **GitHub Actions**.
