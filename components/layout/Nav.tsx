@@ -58,7 +58,7 @@ export function Nav() {
       <div className="mx-auto flex h-[72px] max-w-content items-center justify-between gap-4 px-5 sm:px-8">
         <a
           href="#top"
-          aria-label={`${profile.shortName}, back to top`}
+          aria-label={`DN, ${profile.shortName}, back to top`}
           className="flex size-11 items-center justify-center rounded-lg border-2 border-accent font-mono text-sm font-medium text-accent-text"
         >
           DN

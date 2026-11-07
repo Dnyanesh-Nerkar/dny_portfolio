@@ -7,7 +7,7 @@ Personal portfolio for Dnyanesh Nerkar, built around the "Golden Record" concept
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm run build && npm start
+npm run build   # static site in out/
 ```
 
 ## Edit content
@@ -18,4 +18,11 @@ All content lives in `/data`, so no component changes are needed:
 - `experience.ts`, `education.ts`, `skills.ts`
 - `projects.ts`: set `metric` to show a real outcome, and `status` to show a confirmed badge
 
-Set `NEXT_PUBLIC_SITE_URL` to the production domain so canonical, sitemap and Open Graph URLs are correct.
+## Deploy
+
+Every push to `release` runs `.github/workflows/deploy.yml`, which publishes the static export to GitHub Pages. The workflow sets `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_SITE_URL` from the repository's Pages settings.
+
+One-time setup in the repository settings:
+
+1. **Pages**: set Source to **GitHub Actions**.
+2. **Environments > github-pages > Deployment branches and tags**: allow `release`.

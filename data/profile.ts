@@ -1,3 +1,5 @@
+import { basePath } from "@/lib/site";
+
 export const profile = {
   name: "Dnyanesh Vinay Nerkar",
   shortName: "Dnyanesh Nerkar",
@@ -15,7 +17,7 @@ export const profile = {
     email: "",
     linkedin: "",
     github: "",
-    resume: "/Dnyanesh_Nerkar_Resume.pdf",
+    resume: `${basePath}/Dnyanesh_Nerkar_Resume.pdf`,
   },
   industriesTouched: 4,
   platformsLabel: 5,

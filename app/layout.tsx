@@ -38,12 +38,12 @@ const mono = localFont({
 const title = "Dnyanesh Nerkar | MDM and Data Governance";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  // Origin only: Next adds basePath to generated image URLs, so a path here would double it.
+  metadataBase: new URL(new URL(siteUrl).origin),
   title,
   description: profile.description,
-  alternates: { canonical: "/" },
-  icons: { icon: "/favicon.svg" },
-  openGraph: { title, description: profile.description, type: "profile", url: "/", siteName: profile.shortName },
+  alternates: { canonical: `${siteUrl}/` },
+  openGraph: { title, description: profile.description, type: "profile", url: `${siteUrl}/`, siteName: profile.shortName },
   twitter: { card: "summary_large_image", title, description: profile.description },
 };
 
