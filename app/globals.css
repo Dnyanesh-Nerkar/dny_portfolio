@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+:root[data-theme="dark"] {
+  --bg: #0b0f14;
+  --surface: #121821;
+  --surface-2: #1a2230;
+  --border: #263042;
+  --text: #e8edf4;
+  --text-muted: #9aa7b8;
+  --accent: #f5c451;
+  --accent-soft: rgba(245, 196, 81, 0.14);
+  --link: #6cb6ff;
+  --success: #4ade80;
+  /* Accent used as text. Same as --accent in dark mode. */
+  --accent-text: #f5c451;
+  --on-accent: #0b0f14;
+  --dot: rgba(154, 167, 184, 0.13);
+  --glow: rgba(245, 196, 81, 0.13);
+  --card-shadow: none;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #faf8f3;
+  --surface: #ffffff;
+  --surface-2: #f1eee6;
+  --border: #e2ddd0;
+  --text: #141a22;
+  --text-muted: #566274;
+  --accent: #b7791f;
+  --accent-soft: rgba(183, 121, 31, 0.12);
+  --link: #1d5fb8;
+  --success: #15803d;
+  /* #B7791F is only ~3.5:1 on these surfaces, so text uses a darker gold to meet WCAG AA. */
+  --accent-text: #85550f;
+  --on-accent: #0b0f14;
+  --dot: rgba(86, 98, 116, 0.16);
+  --glow: rgba(183, 121, 31, 0.14);
+  --card-shadow: 0 1px 2px rgba(20, 26, 34, 0.05), 0 6px 18px rgba(20, 26, 34, 0.05);
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--text);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 700;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+@layer components {
+  .section {
+    @apply mx-auto w-full max-w-content px-5 py-16 sm:px-8 lg:py-28;
+  }
+  .card {
+    @apply rounded-card border border-border bg-surface;
+    box-shadow: var(--card-shadow);
+    transition:
+      transform 180ms ease-out,
+      border-color 180ms ease-out,
+      box-shadow 180ms ease-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  :root[data-theme="dark"] .card-hover:hover {
+    box-shadow: inset 0 0 24px var(--accent-soft);
+  }
+  .is-linked {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  [id^="role-"]:target .card,
+  .card:target {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+}
+
+.hero-glow {
+  background: radial-gradient(60% 60% at 72% 42%, var(--glow), transparent 70%);
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* Applied before hydration so reduced-motion users never see the unmerged state. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .merge-record {
+    display: none !important;
+  }
+  .merge-final {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .pulse-dot {
+    animation: none;
+  }
+  .card,
+  .card-hover:hover {
+    transition: none;
+    transform: none;
+  }
+}
