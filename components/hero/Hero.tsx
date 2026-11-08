@@ -3,7 +3,6 @@ import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { yearsSince } from "@/lib/yearsSince";
 import { Button } from "@/components/ui/Button";
-import { GoldenRecordMerge } from "./GoldenRecordMerge";
 import { StatStrip, type Stat } from "./StatStrip";
 
 export function Hero() {
@@ -18,15 +17,15 @@ export function Hero() {
     <section aria-labelledby="hero-title" className="relative overflow-hidden">
       <div aria-hidden className="hero-glow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid max-w-content items-center gap-10 px-5 pb-16 pt-12 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-20">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-12">
           <p className="mb-4 font-mono text-label tracking-widest text-accent-text">{profile.eyebrow}</p>
           <h1 id="hero-title" className="text-hero">
             {profile.shortName}
           </h1>
-          <p className="mt-5 max-w-xl font-heading text-xl font-medium leading-snug sm:text-2xl">{profile.headline}</p>
-          <p className="mt-3 max-w-xl text-muted">
-            {profile.title} at {profile.company}.
+          <p className="mt-3 font-heading text-lg font-bold sm:text-xl">
+            {profile.title} at {profile.company}
           </p>
+          <p className="mt-5 max-w-2xl font-heading text-xl font-medium leading-snug sm:text-2xl">{profile.headline}</p>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Button href="#projects" variant="primary">
@@ -47,10 +46,6 @@ export function Hero() {
           <div className="mt-10">
             <StatStrip stats={stats} />
           </div>
-        </div>
-
-        <div className="lg:col-span-5">
-          <GoldenRecordMerge />
         </div>
 
         <nav aria-label="Featured work" className="lg:col-span-12">
