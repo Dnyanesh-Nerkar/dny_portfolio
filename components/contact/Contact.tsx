@@ -3,6 +3,7 @@ import { profile } from "@/data/profile";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { ContactForm } from "./ContactForm";
 
 export function Contact() {
   const { email, linkedin, github, resume } = profile.links;
@@ -34,6 +35,7 @@ export function Contact() {
             <Download aria-hidden className="size-4" /> Download Résumé
           </a>
         </div>
+        <ContactForm />
       </Reveal>
     </section>
   );

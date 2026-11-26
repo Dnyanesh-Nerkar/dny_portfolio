@@ -34,6 +34,9 @@ jobs:
           # Project pages live under /<repo>/, so assets and canonical URLs need that prefix.
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # Public Web3Forms key for the Contact form (Settings → Secrets and variables → Actions → Variables).
+          # Unset means the form is hidden and the rest of the site still deploys.
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.WEB3FORMS_KEY }}
 
       - uses: actions/upload-pages-artifact@v5
         with:
